@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 @Component({
   selector: 'app-line-chart',
@@ -7,19 +7,29 @@ import { Chart } from 'angular-highcharts';
 })
 export class LineChartComponent implements OnInit {
   chart!: Chart;
+  @Input() props: any = {};
   constructor() { }
 
   ngOnInit(): void {
-    this.initChart()
+    this.initChart();
+    console.log('lineChart:', this.props)
+  }
+
+  getData() {
+      return this.props.csv ? {csv: this.props.csv} : {}
   }
 
   initChart() {
     this.chart = new Chart({
+      chart: {
+        type: 'line'
+      },
       legend: {
         layout: 'vertical',
         align: 'right',
         verticalAlign: 'middle'
       },
+      data: this.getData(),
       series: [{
         type: 'line',
         data: [

@@ -18,7 +18,8 @@ export const COPONENT_LIST = [
         icon: 'pi pi-chart-line',
         component: LineChartComponent,
         props: {
-          data: []
+          data: [],
+          csv: ''
         }
     }
 ]
