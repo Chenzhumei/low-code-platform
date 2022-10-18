@@ -1,0 +1,19 @@
+<header class="visual-editor-header">
+    <div class="visual-editor-header-wrap">Visual-Editor</div>
+    <div class="visual-editor-header-wrap">
+        <p-button type="button"  icon="pi pi-history" iconPos="left" (click)="commandsService.commands.undo()">撤销</p-button>
+        <p-button type="button"  icon="pi pi-refresh" iconPos="left" (click)="commandsService.commands.redo()">重做</p-button>
+        <p-button type="button"  icon="pi pi-file-edit" iconPos="left">编辑</p-button>
+    </div>
+    <div class="visual-editor-header-wrap">
+        <p-button type="button"  icon="pi pi-file-import" iconPos="left">导入</p-button>
+        <p-button type="button"  icon="pi pi-file-export" iconPos="left">导出</p-button>
+        <p-button type="button"  icon="pi pi-save" iconPos="left" (click)="save()">保存</p-button>
+    </div>
+    <div class="visual-editor-header-wrap">
+        <p-button type="button"  icon="pi pi-arrow-up" iconPos="left" (click)="commandsService.commands.placeTop()">置顶</p-button>
+        <p-button type="button"  icon="pi pi-arrow-down" iconPos="left" (click)="commandsService.commands.placeBottom()">置底</p-button>
+        <p-button type="button"  icon="pi pi-trash" iconPos="left" (click)="commandsService.commands.delete()">删除</p-button>
+        <p-button type="button"  icon="pi pi-times" iconPos="left" (click)="commandsService.commands.clear()">清空</p-button>
+    </div>
+</header> 

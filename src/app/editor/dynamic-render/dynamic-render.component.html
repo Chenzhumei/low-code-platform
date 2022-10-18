@@ -1,0 +1,6 @@
+<div class="visual-editor-block" [class.visual-editor-block-focus]="_data.focus"
+    [style.left.px]="_data.style.left" [style.top.px]="_data.style.top"
+    [style.zIndex]="_data.zIndex"
+    (mousedown)="handleMouseDown($event)">
+    <ng-template appRenderDynamic></ng-template>   
+</div>

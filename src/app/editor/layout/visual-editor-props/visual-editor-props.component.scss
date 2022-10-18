@@ -1,0 +1,19 @@
+@import '../../../../assets/styles/variable';
+@import '../../../../assets/styles/mixin.scss';
+$leftRightWidth: 260px;
+.visual-editor-props {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: $leftRightWidth;
+    height: 100%;
+    box-sizing: border-box;
+    // box-shadow: -2px 0 4px 0 $boxShadowColor;
+    overflow-y: auto;
+}
+
+h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+

@@ -1,0 +1,39 @@
+@mixin wh100 {
+    width: 100%;
+    height: 100%;
+}
+
+@mixin fixed-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .2);
+}
+@mixin absolute {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    background-color: #fff;
+    border-radius: 4px;
+}
+@mixin absoluteSize($size: 0) {
+    position: absolute;
+    left: $size; top: $size; right: $size; bottom: $size;
+}
+@mixin flex-layout {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+}
+@mixin flex-box($justifyContent: center, $alignItems: center, $flexDirection: row) {
+    display: flex;
+    flex-direction: $flexDirection;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+    overflow: hidden;
+    @content;
+}

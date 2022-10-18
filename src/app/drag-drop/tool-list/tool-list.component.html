@@ -1,0 +1,16 @@
+<div class="tool-list">
+    <ul>
+        <li *ngFor="let component of componentList">
+            <div class="label">{{component.label}}</div>
+            <button 
+                appDrag 
+                componentType="{{component.type}}"
+                [dragPlaceholder]="dragPlaceholderCanvas"
+                >
+                拖拽
+            </button>
+        </li>
+    </ul>
+</div>
+<canvas height="50" width="100" id="drag-placeholder" #dragPlaceholderCanvas></canvas>
+

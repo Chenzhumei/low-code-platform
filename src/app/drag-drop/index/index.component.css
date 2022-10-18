@@ -1,0 +1,15 @@
+.container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #333;
+    min-height: 300px;
+    display: flex;
+    justify-content: flex-start;   
+}
+
+.container .draw-area{
+    width: 100%;
+    margin-left: 20px;
+    border: 1px solid #999999;
+    padding: 20px;
+}

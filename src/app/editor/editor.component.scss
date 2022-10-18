@@ -1,0 +1,12 @@
+@import './../../assets/styles/index.scss';
+.visual-editor {
+    @include wh100;
+    @include flex-layout;
+}
+
+// container
+.visual-editor-container {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}

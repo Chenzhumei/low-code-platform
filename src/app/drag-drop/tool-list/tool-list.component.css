@@ -1,0 +1,29 @@
+.tool-list {
+    border: 1px solid #333333;
+    width: 200px;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-basis: 200px;
+}
+
+.tool-list ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tool-list ul li {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    
+}
+
+.tool-list ul li .label {
+    font-size: 18px;
+}

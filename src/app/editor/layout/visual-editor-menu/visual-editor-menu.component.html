@@ -1,0 +1,15 @@
+<div class="visual-editor-menu">
+    <h3>基础组件</h3>
+    <section class="visual-editor-menu-content" #menu >
+        <div class="visual-editor-menu-item" *ngFor="let item of componentList" [attr.draggable]="true" (dragstart)="onDragStart($event, item)">
+            <div class="visual-editor-menu-item-comp">
+                <!-- <ng-container [ngComponentOutlet]="item.component" 
+                [ngComponentOutletInjector]="createInjector(item)"></ng-container> -->
+                <i [class]="item.icon"></i>
+            </div>
+            <div class="visual-editor-menu-item-text">{{item.name}}</div>
+        </div>
+    </section>
+</div>    
+
+

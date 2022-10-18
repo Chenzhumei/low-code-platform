@@ -1,0 +1,16 @@
+<div class="container" >
+    <ng-container *ngFor="let component of componentList">
+        <ng-container *ngIf="component.type === 'empty'">
+            <ng-container *ngTemplateOutlet="dropArea; context: {component: component}"></ng-container>
+        </ng-container>
+        <div class="component" *ngIf="component.type !== 'empty'">
+            <p >{{component.type}}</p>
+        </div>
+    </ng-container>
+</div>
+
+<ng-template #dropArea let-componentInfo="component">
+    <div class="drop-area" appDrop (dropEvent)="getDropEvent($event)" [dropData]="componentInfo">
+        <p>可拖放组件</p>
+    </div>
+</ng-template>

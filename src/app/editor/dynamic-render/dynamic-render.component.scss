@@ -1,0 +1,14 @@
+@import '../../../assets/styles/variable';
+@import '../../../assets/styles/mixin.scss';
+.visual-editor-block {
+    position: absolute;
+}
+.visual-editor-block-focus {
+    &::after {
+        display: block;  // 编辑状态下，可以拖拽，不能输入
+        content: '';
+        position: absolute;
+        left: 0; right: 0; bottom: 0; top: 0;
+        border: 2px dashed $primary; // focus边框虚线
+    }
+}
