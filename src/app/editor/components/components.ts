@@ -67,7 +67,7 @@ export const COPONENT_LIST = [
           type: 'select',
           label: '按钮大小',
           options: [
-            {label: '基础', val: 'primary'},
+            {label: '基础', value: 'primary'},
             {label: '成功', value: 'success'},
             {label: '失败', value: 'fail'},
             {label: '警告', value: 'warning'},
