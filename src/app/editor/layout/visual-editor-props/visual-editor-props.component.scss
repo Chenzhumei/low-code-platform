@@ -10,6 +10,12 @@ $leftRightWidth: 260px;
     box-sizing: border-box;
     // box-shadow: -2px 0 4px 0 $boxShadowColor;
     overflow-y: auto;
+    .content {
+        .footer {
+            display: flex;
+            justify-content: center;
+        }
+    }
 }
 
 h3 {

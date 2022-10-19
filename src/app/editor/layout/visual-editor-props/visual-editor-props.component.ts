@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { SchemaService } from '../../service/schema.service';
 
 @Component({
   selector: 'app-visual-editor-props',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./visual-editor-props.component.scss']
 })
 export class VisualEditorPropsComponent implements OnInit {
-
-  constructor() { }
+  public currentBlock: any;
+  constructor(
+    public schemaService: SchemaService,
+  ) { }
 
   ngOnInit(): void {
+    this.schemaService.lateastSelectedBlock$.subscribe((block: any) => {
+      console.log('latest block:', block)
+    })
   }
 
 }

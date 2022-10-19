@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { EditorService } from './editor.service';
 
 @Injectable()
@@ -10,6 +11,8 @@ export class SchemaService {
     },
     blocks: []
   };
+
+  public lateastSelectedBlock$ = new Subject<any>();
 
   constructor(
     private editorService:EditorService,
@@ -43,4 +46,8 @@ export class SchemaService {
     this.schema.blocks.forEach((block: any) => block.focus = false);
     // refresh && this.editorService.forceUpdateEditor(true);
   } 
+
+  setLateastSelectedBlock(lateastSelectedBlock: any) {
+   this.lateastSelectedBlock$.next(lateastSelectedBlock);
+  }
 }

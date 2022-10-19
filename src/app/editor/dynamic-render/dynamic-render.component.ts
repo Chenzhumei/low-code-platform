@@ -85,7 +85,6 @@ export class DynamicRenderComponent implements OnInit {
         this._data.focus = true;
       }
     }
-    // this.editorService.forceUpdateEditor(true)
     this.handleBlockMouseMove(e)
   }
 
@@ -95,6 +94,7 @@ export class DynamicRenderComponent implements OnInit {
     const { focus, unfocused } = this.schemaService.blocksFocusInfo();
 
     const lastSelectBlock = this.schemaService.schema.blocks[this.blockIndex];
+    this.schemaService.setLateastSelectedBlock(lastSelectBlock);
     // 我们声明：B 代表最近一个选中拖拽的元素，A 则是对应的参照物，对比两者的位置
     const { width: BWidth, height: BHeight, left: BLeft, top: BTop } = lastSelectBlock.style;
 

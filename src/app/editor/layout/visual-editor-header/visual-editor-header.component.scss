@@ -10,6 +10,9 @@ $headerHeight: 60px;
     box-shadow: 0 2px 4px 0 $boxShadowColor;
     cursor: pointer;
     z-index: 1;
+    .visual-editor-header-wrap {
+        display: flex;
+    }
 }
 
 :host ::ng-deep .p-button {

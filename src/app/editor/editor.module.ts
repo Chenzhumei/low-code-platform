@@ -19,6 +19,8 @@ import { SchemaService } from './service/schema.service';
 import { MarkLineService } from './service/mark-line.service';
 import { CommandsService } from './service/commands.service';
 import { DragEventService } from './service/drag-event.service';
+import { TextComponent } from './components/text/text.component';
+import { ImageComponent } from './components/image/image.component';
 
 
 
@@ -32,7 +34,9 @@ import { DragEventService } from './service/drag-event.service';
     ButtonComponent,
     LineChartComponent,
     DynamicRenderComponent,
-    RenderDynamicDirective
+    RenderDynamicDirective,
+    TextComponent,
+    ImageComponent
   ],
   imports: [
     CommonModule,
