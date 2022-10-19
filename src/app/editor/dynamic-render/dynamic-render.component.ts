@@ -16,8 +16,14 @@ import { SchemaService } from '../service/schema.service';
 export class DynamicRenderComponent implements OnInit {
   componentType = '';
   componentMap: any = {};
+  data: any;
 
-  @Input() data: Record<string, any> = {};
+  @Input() set block(blockData: Record<string, any>) {
+    this.data = blockData;
+    this.componentType = this.data.type as string;
+    this.componentType && this.createDynamicComponent(this.componentType);
+    console.log('data change', this.data)
+  };
   @Input() blockIndex = -1;
 
   @ViewChild(RenderDynamicDirective, {static: true}) renderDynamic!:RenderDynamicDirective;
@@ -41,17 +47,15 @@ export class DynamicRenderComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.componentType = this.data.type as string;
-    this.componentType && this.createDynamicComponent(this.componentType);
-
-    this.editorService.forceUpdateEditor$.subscribe((updateBlockIndex: number) => {
-      if (updateBlockIndex === this.blockIndex) {
-        this.createDynamicComponent(this.componentType)
+    this.editorService.forceUpdateEditor$.subscribe((index: number) => {
+      if (this.blockIndex === index) {
+       this.createDynamicComponent(this.componentType)
       }
     })
   }
 
   createDynamicComponent(type: string) {
+   console.log('createDynamicComponent:', type)
    const component = this.cfr.resolveComponentFactory(this.componentMap[type]);
    this.renderDynamic.vcr.clear();
    const componentRef: ComponentRef<any> = this.renderDynamic.vcr.createComponent(component);
@@ -83,6 +87,7 @@ export class DynamicRenderComponent implements OnInit {
         this.data.focus = true;
       }
     }
+    this.schemaService.setLateastSelectedBlock({lateastSelectedBlock: this.schemaService.schema.blocks[this.blockIndex], blockIndex:this.blockIndex});
     this.handleBlockMouseMove(e)
   }
 
@@ -92,7 +97,7 @@ export class DynamicRenderComponent implements OnInit {
     const { focus, unfocused } = this.schemaService.blocksFocusInfo();
 
     const lastSelectBlock = this.schemaService.schema.blocks[this.blockIndex];
-    this.schemaService.setLateastSelectedBlock({lateastSelectedBlock: lastSelectBlock, blockIndex:this.blockIndex});
+
     // 我们声明：B 代表最近一个选中拖拽的元素，A 则是对应的参照物，对比两者的位置
     const { width: BWidth, height: BHeight, left: BLeft, top: BTop } = lastSelectBlock.style;
 
@@ -193,7 +198,6 @@ export class DynamicRenderComponent implements OnInit {
       if (this.dragState.dragging) {
         this.dragEventService.setDragEvent('endDrag');
       }
-
       this.markLineService.setMarkLine(null, null);
     }
 
