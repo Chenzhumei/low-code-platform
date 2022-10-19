@@ -46,38 +46,11 @@ export const COPONENT_LIST = [
       propsConfig: {
         src: {
           type: 'input',
-          label: '地址'
+          label: '图片地址'
         }
       },
       props: {
         src: 'assets/img/image.png'
-      }
-    },
-    {
-      name: 'button',
-      type: 'ButtonComponent',
-      icon: 'pi pi-stop',
-      component: ButtonComponent,
-      propsConfig: {
-        text: {
-          type: 'input',
-          label: '显示文本'
-        },
-        size: {
-          type: 'select',
-          label: '按钮大小',
-          options: [
-            {label: '基础', value: 'primary'},
-            {label: '成功', value: 'success'},
-            {label: '失败', value: 'fail'},
-            {label: '警告', value: 'warning'},
-            {label: '提示', value: 'info'}
-          ]
-        },
-      },
-      props: {
-        text: '默认按钮',
-        size: 'primary'
       }
     },
     {

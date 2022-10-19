@@ -9,10 +9,15 @@
                             <label for="{{propKey}}" class="label">{{currentBlock.propsConfig[propKey].label}}</label>
                             <input id="{{propKey}}" name="{{propKey}}" type="text" pInputText [(ngModel)]="editProps[propKey]" />
                         </div>
-                        <div class="field" *ngSwitchCase="'select'">
+                        <div class="field" *ngSwitchCase="'multiSelect'">
                             <label for="{{propKey}}" class="label">{{currentBlock.propsConfig[propKey].label}}</label>
                             <p-multiSelect id="{{propKey}}" name="{{propKey}}" [options]="currentBlock.propsConfig[propKey].options" 
-                                [(ngModel)]="editProps[propKey]" optionValue="value"></p-multiSelect>
+                                [(ngModel)]="editProps[propKey]"  optionLabel="label" optionValue="value"></p-multiSelect>
+                        </div>
+                        <div class="field" *ngSwitchCase="'select'">
+                            <label for="{{propKey}}" class="label">{{currentBlock.propsConfig[propKey].label}}</label>
+                            <p-dropdown id="{{propKey}}" name="{{propKey}}" [options]="currentBlock.propsConfig[propKey].options" 
+                                [(ngModel)]="editProps[propKey]" optionLabel="label" optionValue="value"></p-dropdown>    
                         </div>
                         <div class="field" *ngSwitchCase="'color'">
                             <label for="{{propKey}}" class="label">{{currentBlock.propsConfig[propKey].label}}</label>

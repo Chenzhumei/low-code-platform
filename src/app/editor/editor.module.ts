@@ -26,6 +26,8 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import { FormsModule } from '@angular/forms';
 import {InputNumberModule} from 'primeng/inputnumber';
+import {DropdownModule} from 'primeng/dropdown';
+
 
 
 @NgModule({
@@ -50,6 +52,7 @@ import {InputNumberModule} from 'primeng/inputnumber';
     InputTextModule,
     MultiSelectModule,
     InputNumberModule,
+    DropdownModule,
     ColorPickerModule,
     AccordionModule,
     EditorRoutingModule
