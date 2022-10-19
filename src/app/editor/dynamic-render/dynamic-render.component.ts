@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentFactoryResolver, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentFactoryResolver, ComponentRef, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { COPONENT_MAP, COPONENT_MAP_CONFIG } from '../components/components';
 import { RenderDynamicDirective } from '../directive/render-dynamic.directive';
 import { DragEventService } from '../service/drag-event.service';
@@ -52,14 +52,12 @@ export class DynamicRenderComponent implements OnInit {
   }
 
   createDynamicComponent(type: string) {
-    console.log('createDynamicComponent ' + type, this.data)
    const component = this.cfr.resolveComponentFactory(this.componentMap[type]);
    this.renderDynamic.vcr.clear();
-   const componentRef = this.renderDynamic.vcr.createComponent(
-    component
-   ) as any;
+   const componentRef: ComponentRef<any> = this.renderDynamic.vcr.createComponent(component);
    // 给动态组件传递数据
    componentRef.instance.props = this.data.props;
+   componentRef.changeDetectorRef.detectChanges();
  
    const { offsetWidth, offsetHeight } = componentRef.location.nativeElement.parentNode;
    const { style } = this.data;
