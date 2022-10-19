@@ -57,7 +57,7 @@ export class SchemaService {
     return { focus, unfocused };
   }
 
-  cleanBlocksFocus(refresh: boolean) {
+  cleanBlocksFocus() {
     this.schema.blocks.forEach((block: any) => block.focus = false);
     // refresh && this.editorService.forceUpdateEditor(true);
   } 

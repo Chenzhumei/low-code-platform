@@ -79,7 +79,7 @@ export class DynamicRenderComponent implements OnInit {
       this.data.focus = focus.length <= 1 ? true : !this.data.focus;
     } else {
       if (!this.data.focus) {
-        this.schemaService.cleanBlocksFocus(true);
+        this.schemaService.cleanBlocksFocus();
         this.data.focus = true;
       }
     }

@@ -69,7 +69,7 @@ export class VisualEditorContentComponent implements OnInit {
 
   handleClickCanvas(e: any) {
     e.stopPropagation();
-    this.schemaService.cleanBlocksFocus(true);
+    this.schemaService.cleanBlocksFocus();
     this.schemaService.setLateastSelectedBlock({lateastSelectedBlock: null, blockIndex:-1});
   }
 
