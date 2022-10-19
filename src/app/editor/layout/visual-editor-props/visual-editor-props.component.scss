@@ -8,9 +8,28 @@ $leftRightWidth: 260px;
     width: $leftRightWidth;
     height: 100%;
     box-sizing: border-box;
-    // box-shadow: -2px 0 4px 0 $boxShadowColor;
+    box-shadow: -2px 0 4px 0 $boxShadowColor;
     overflow-y: auto;
+    h3 {
+        font-size: 18px;
+        margin: 20px 0 10px 0;
+    }
     .content {
+        padding: 10px;
+        .props {
+            .field {
+                margin-bottom: 20px;
+                .label {
+                    display: block;
+                    font-size: 14px;
+                    color: #495057;
+                    margin-bottom: 10px;
+                }
+                ::ng-deep .p-inputnumber-input {
+                    width: 130px;
+                }
+            }
+        }
         .footer {
             display: flex;
             justify-content: center;
@@ -18,8 +37,4 @@ $leftRightWidth: 260px;
     }
 }
 
-h3 {
-    font-size: 18px;
-    margin-bottom: 16px;
-}
 

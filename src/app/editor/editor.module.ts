@@ -21,7 +21,11 @@ import { CommandsService } from './service/commands.service';
 import { DragEventService } from './service/drag-event.service';
 import { TextComponent } from './components/text/text.component';
 import { ImageComponent } from './components/image/image.component';
-
+import {InputTextModule} from 'primeng/inputtext';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {ColorPickerModule} from 'primeng/colorpicker';
+import { FormsModule } from '@angular/forms';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 
 @NgModule({
@@ -40,8 +44,13 @@ import { ImageComponent } from './components/image/image.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ChartModule,
     ButtonModule,
+    InputTextModule,
+    MultiSelectModule,
+    InputNumberModule,
+    ColorPickerModule,
     AccordionModule,
     EditorRoutingModule
   ],

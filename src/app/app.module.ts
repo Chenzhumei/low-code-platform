@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { EditorModule } from './editor/editor.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -14,6 +15,7 @@ import { EditorModule } from './editor/editor.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     EditorModule,
     AppRoutingModule
   ],

@@ -1,5 +1,6 @@
 <div class="visual-editor-content" >
-    <div class="visual-editor-canvas" [style]="schemaService.schema.container" 
+    <div class="visual-editor-canvas" [style.width.px]="schemaService.schema.container.width" 
+        [style.height.px]="schemaService.schema.container.height"
         (drop)="handleDrop($event)" (dragenter)="handleDragenter($event)" (dragleave)="handleDragleave($event)" 
         (dragover)="handleDragover($event)" (mousedown)="handleClickCanvas($event)">
         

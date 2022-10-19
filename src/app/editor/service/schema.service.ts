@@ -6,8 +6,8 @@ import { EditorService } from './editor.service';
 export class SchemaService {
   public schema: Record<string, any> = {
     container: {
-      width: '1000px',
-      height: '1000px'
+      width: 800,
+      height: 1000
     },
     blocks: []
   };

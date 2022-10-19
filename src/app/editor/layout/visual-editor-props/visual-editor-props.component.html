@@ -1,6 +1,44 @@
 <div class="visual-editor-props">
-    <h3 style="margin: 20px;">组件属性</h3>
+    <h3>组件属性</h3>
     <div class="content">
+        <form class="props">
+            <ng-container *ngIf="currentBlock">
+                <ng-container *ngFor="let propKey of propKeys">
+                    <ng-container [ngSwitch]="currentBlock.propsConfig[propKey].type">
+                        <div class="field" *ngSwitchCase="'input'">
+                            <label for="{{propKey}}" class="label">{{currentBlock.propsConfig[propKey].label}}</label>
+                            <input id="{{propKey}}" name="{{propKey}}" type="text" pInputText [(ngModel)]="editProps[propKey]" />
+                        </div>
+                        <div class="field" *ngSwitchCase="'select'">
+                            <label for="{{propKey}}" class="label">{{currentBlock.propsConfig[propKey].label}}</label>
+                            <p-multiSelect id="{{propKey}}" name="{{propKey}}" [options]="currentBlock.propsConfig[propKey].options" 
+                                [(ngModel)]="editProps[propKey]" optionValue="value"></p-multiSelect>
+                        </div>
+                        <div class="field" *ngSwitchCase="'color'">
+                            <label for="{{propKey}}" class="label">{{currentBlock.propsConfig[propKey].label}}</label>
+                            <p-colorPicker name="{{propKey}}" [(ngModel)]="editProps[propKey]"></p-colorPicker>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="!currentBlock">
+                <div class="field">
+                    <label for="containerWidth" class="label">容器宽度</label>
+                    <p-inputNumber [(ngModel)]="currentContainer.width" name="containerWidth" [showButtons]="true" [min]="100" buttonLayout="horizontal" inputId="containerWidth" suffix="px"
+                     [step]="100" decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" 
+                    incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal">
+                    </p-inputNumber>
+                </div>
+                <div class="field">
+                    <label for="containerHeight" class="label">容器高度</label>
+                    <p-inputNumber [(ngModel)]="currentContainer.height" name="containerHeight" [showButtons]="true" [min]="100" buttonLayout="horizontal" inputId="containerHeight" suffix="px"
+                     [step]="100" decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" 
+                    incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal">
+                    </p-inputNumber>
+                </div>
+            </ng-container>     
+        </form>
         <div class="footer">
             <button pButton type="button" label="重置" class="p-button-outlined" style="margin-right: 15px;"></button>
             <button pButton type="button" label="应用"></button>

@@ -10,8 +10,32 @@ export const COPONENT_LIST = [
       type: 'TextComponent',
       icon: 'pi pi-language',
       component: TextComponent,
+      propsConfig: {
+        text: {
+          type: 'input',
+          label: '显示文本'
+        },
+        size: {
+          type: 'select',
+          label: '字体大小',
+          options: [
+            {label: '12px', value: '12px'},
+            {label: '14px', value: '14px'},
+            {label: '16px', value: '16px'},
+            {label: '18px', value: '18px'},
+            {label: '20px', value: '20px'},
+            {label: '22px', value: '22px'}
+          ]
+        },
+        color: {
+          type: 'color',
+          label: '字体颜色'
+        }
+      },
       props: {
-        context: '文本'
+        text: '输入文本',
+        size: '12px',
+        color: '#000'
       }
     },
     {
@@ -19,9 +43,14 @@ export const COPONENT_LIST = [
       type: 'ImageComponent',
       icon: 'pi pi-images',
       component: ImageComponent,
+      propsConfig: {
+        src: {
+          type: 'input',
+          label: '地址'
+        }
+      },
       props: {
-        alt: '图片',
-        src: ''
+        src: 'assets/img/image.png'
       }
     },
     {
@@ -29,8 +58,26 @@ export const COPONENT_LIST = [
       type: 'ButtonComponent',
       icon: 'pi pi-stop',
       component: ButtonComponent,
+      propsConfig: {
+        text: {
+          type: 'input',
+          label: '显示文本'
+        },
+        size: {
+          type: 'select',
+          label: '按钮大小',
+          options: [
+            {label: '基础', val: 'primary'},
+            {label: '成功', value: 'success'},
+            {label: '失败', value: 'fail'},
+            {label: '警告', value: 'warning'},
+            {label: '提示', value: 'info'}
+          ]
+        },
+      },
       props: {
-        context: '按钮'
+        text: '默认按钮',
+        size: 'primary'
       }
     },
     {
@@ -38,8 +85,18 @@ export const COPONENT_LIST = [
         type: 'LineChartComponent',
         icon: 'pi pi-chart-line',
         component: LineChartComponent,
+        propsConfig: {
+          data: {
+            type: 'input',
+            label: '数据'
+          },
+          csv: {
+            type: 'input',
+            label: 'csv上传'
+          }
+        },
         props: {
-          data: [],
+          data: '',
           csv: ''
         }
     }
