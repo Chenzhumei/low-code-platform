@@ -25,7 +25,6 @@ export class VisualEditorPropsComponent implements OnInit {
     this.beforeContainer = _.cloneDeep(this.schemaService.schema.container);
 
     this.schemaService.lateastSelectedBlock$.subscribe((blockInfo: any) => {
-      console.log('latest block:', blockInfo);
       this.currentBlock = _.cloneDeep(blockInfo.lateastSelectedBlock);
       // 保留一份原始数据
       this.beforeBlock = _.cloneDeep(blockInfo.lateastSelectedBlock);
