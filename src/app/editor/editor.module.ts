@@ -27,7 +27,8 @@ import {ColorPickerModule} from 'primeng/colorpicker';
 import { FormsModule } from '@angular/forms';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {DropdownModule} from 'primeng/dropdown';
-
+import {MessageModule} from 'primeng/message';
+import {MessagesModule} from 'primeng/messages';
 
 
 @NgModule({
@@ -47,6 +48,8 @@ import {DropdownModule} from 'primeng/dropdown';
   imports: [
     CommonModule,
     FormsModule,
+    MessageModule,
+    MessagesModule,
     ChartModule,
     ButtonModule,
     InputTextModule,

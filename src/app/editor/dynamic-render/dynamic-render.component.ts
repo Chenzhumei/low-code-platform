@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentFactoryResolver, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { COPONENT_MAP, COPONENT_MAP_CONFIG } from '../components/components';
 import { RenderDynamicDirective } from '../directive/render-dynamic.directive';
 import { DragEventService } from '../service/drag-event.service';
@@ -10,18 +10,14 @@ import { SchemaService } from '../service/schema.service';
   selector: 'app-dynamic-render',
   templateUrl: './dynamic-render.component.html',
   styleUrls: ['./dynamic-render.component.scss'],
-  providers: [{provide: COPONENT_MAP_CONFIG, useValue: COPONENT_MAP}]
+  providers: [{provide: COPONENT_MAP_CONFIG, useValue: COPONENT_MAP}],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicRenderComponent implements OnInit {
-  _data: Record<string, any> = {};
   componentType = '';
   componentMap: any = {};
-  @Input() set data(data: Record<string, any>) {
-    this._data = data;
-    this.componentType = data.type as string;
-    this.componentType && this.createDynamicComponent(this.componentType)
-  }
 
+  @Input() data: Record<string, any> = {};
   @Input() blockIndex = -1;
 
   @ViewChild(RenderDynamicDirective, {static: true}) renderDynamic!:RenderDynamicDirective;
@@ -35,7 +31,6 @@ export class DynamicRenderComponent implements OnInit {
   
   constructor(
     private cfr: ComponentFactoryResolver,
-    private elf: ElementRef,
     @Inject(COPONENT_MAP_CONFIG) componentMap: any,
     public schemaService: SchemaService,
     private editorService: EditorService,
@@ -46,43 +41,48 @@ export class DynamicRenderComponent implements OnInit {
    }
 
   ngOnInit(): void {
-  }
+    this.componentType = this.data.type as string;
+    this.componentType && this.createDynamicComponent(this.componentType);
 
-  ngAfterViewInit(): void {
-  
+    this.editorService.forceUpdateEditor$.subscribe((updateBlockIndex: number) => {
+      if (updateBlockIndex === this.blockIndex) {
+        this.createDynamicComponent(this.componentType)
+      }
+    })
   }
 
   createDynamicComponent(type: string) {
+    console.log('createDynamicComponent ' + type, this.data)
    const component = this.cfr.resolveComponentFactory(this.componentMap[type]);
    this.renderDynamic.vcr.clear();
    const componentRef = this.renderDynamic.vcr.createComponent(
     component
    ) as any;
-   componentRef.instance.props = this._data.props;
+   // 给动态组件传递数据
+   componentRef.instance.props = this.data.props;
  
    const { offsetWidth, offsetHeight } = componentRef.location.nativeElement.parentNode;
-   const { style } = this._data;
+   const { style } = this.data;
    style.width = offsetWidth;
    style.height = offsetHeight;
-   if (this._data.alignCenter) {
+   if (this.data.alignCenter) {
       style.left = style.left - offsetWidth / 2;
       style.top = style.top - offsetHeight / 2;
-      this._data.alignCenter = false;
+      this.data.alignCenter = false;
     }
   }
 
   handleMouseDown(e: MouseEvent) {
-    console.log('handleMouseDown')
     e.preventDefault();
     e.stopPropagation();
     if (e.shiftKey) {
       const { focus } = this.schemaService.blocksFocusInfo();
       // 当前只有一个被选中时，按住 shift 键不会切换 focus 状态
-      this._data.focus = focus.length <= 1 ? true : !this._data.focus;
+      this.data.focus = focus.length <= 1 ? true : !this.data.focus;
     } else {
-      if (!this._data.focus) {
+      if (!this.data.focus) {
         this.schemaService.cleanBlocksFocus(true);
-        this._data.focus = true;
+        this.data.focus = true;
       }
     }
     this.handleBlockMouseMove(e)
@@ -94,7 +94,7 @@ export class DynamicRenderComponent implements OnInit {
     const { focus, unfocused } = this.schemaService.blocksFocusInfo();
 
     const lastSelectBlock = this.schemaService.schema.blocks[this.blockIndex];
-    this.schemaService.setLateastSelectedBlock(lastSelectBlock);
+    this.schemaService.setLateastSelectedBlock({lateastSelectedBlock: lastSelectBlock, blockIndex:this.blockIndex});
     // 我们声明：B 代表最近一个选中拖拽的元素，A 则是对应的参照物，对比两者的位置
     const { width: BWidth, height: BHeight, left: BLeft, top: BTop } = lastSelectBlock.style;
 
@@ -188,7 +188,6 @@ export class DynamicRenderComponent implements OnInit {
     };
 
     const blockMouseUp = (e: MouseEvent) => {
-      console.log('blockMouseUp')
       
       document.removeEventListener('mousemove', blockMove);
       document.removeEventListener('mouseup', blockMouseUp);

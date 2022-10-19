@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { EditorService } from './editor.service';
+import * as _ from 'lodash'
 
 @Injectable()
 export class SchemaService {
@@ -26,6 +27,20 @@ export class SchemaService {
     this.schema.blocks = blocks;
   }
 
+  updatePropsByBlockIndex(index: number, newProps: any) {
+    const findBlock =this.schema.blocks[index];
+    if (findBlock) {
+      findBlock.props = newProps;
+      this.editorService.forceUpdateEditor(index)
+    }
+  }
+
+  updateContainer(newContainer: any) {
+    this.schema.container = newContainer;
+  }
+
+
+
   resetSchema() {
     this.schema = {
       container: {
@@ -47,7 +62,7 @@ export class SchemaService {
     // refresh && this.editorService.forceUpdateEditor(true);
   } 
 
-  setLateastSelectedBlock(lateastSelectedBlock: any) {
-   this.lateastSelectedBlock$.next(lateastSelectedBlock);
+  setLateastSelectedBlock(selectedBlockInfo:{lateastSelectedBlock: any, blockIndex: number}) {
+   this.lateastSelectedBlock$.next(selectedBlockInfo);
   }
 }

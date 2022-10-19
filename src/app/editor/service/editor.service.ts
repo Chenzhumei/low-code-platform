@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class EditorService {
-  public forceUpdateEditor$ = new BehaviorSubject<boolean>(false)
+  public forceUpdateEditor$ = new Subject<number>()
 
   constructor() { }
 
-  forceUpdateEditor(isUpdate: boolean) {
-    this.forceUpdateEditor$.next(isUpdate)
+  forceUpdateEditor(updateBlockIndex: number) {
+    this.forceUpdateEditor$.next(updateBlockIndex)
   }
 }

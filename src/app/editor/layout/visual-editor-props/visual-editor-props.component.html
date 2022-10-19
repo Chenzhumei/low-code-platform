@@ -45,8 +45,9 @@
             </ng-container>     
         </form>
         <div class="footer">
-            <button pButton type="button" label="重置" class="p-button-outlined" style="margin-right: 15px;"></button>
-            <button pButton type="button" label="应用"></button>
+            <button pButton type="button" label="重置" class="p-button-outlined"
+             style="margin-right: 15px;" (click)="reset()"></button>
+            <button pButton type="button" label="应用" (click)="apply()"></button>
         </div>
     </div>
 </div>

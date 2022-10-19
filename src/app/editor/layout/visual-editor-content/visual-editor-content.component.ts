@@ -23,12 +23,6 @@ export class VisualEditorContentComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.editorService.forceUpdateEditor$.subscribe((isForceUpdate: boolean) => {
-      if (isForceUpdate) {
-        this.cdr.detectChanges()
-        console.log('editor update...')
-      }
-    })
   }
 
   createInjector(item: any) {
@@ -76,7 +70,7 @@ export class VisualEditorContentComponent implements OnInit {
   handleClickCanvas(e: any) {
     e.stopPropagation();
     this.schemaService.cleanBlocksFocus(true);
-    this.schemaService.setLateastSelectedBlock(null);
+    this.schemaService.setLateastSelectedBlock({lateastSelectedBlock: null, blockIndex:-1});
   }
 
 }
