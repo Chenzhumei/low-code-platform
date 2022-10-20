@@ -52,8 +52,8 @@ export class VisualEditorContentComponent implements OnInit {
           height: undefined,
           left: offsetX,
           top: offsetY,
+          zIndex: 1,
         },
-        zIndex: 1,
         ... this.currentMaterialService.currentMatirialComponent
       });
       this.currentMaterialService.currentMatirialComponent = null;

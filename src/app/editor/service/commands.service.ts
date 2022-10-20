@@ -211,9 +211,9 @@ export class CommandsService {
     execute() {
         const before = _.cloneDeep(_this.schemaService.schema.blocks);
         const { focus, unfocused } = _this.schemaService.blocksFocusInfo();
-        const maxZIndex = unfocused.reduce((prev, block) => Math.max(prev, block.zIndex), 0) + 1;
+        const maxZIndex = unfocused.reduce((prev, block) => Math.max(prev, block.style.zIndex), 0) + 1;
         // 给选中元素增加权重
-        focus.forEach(block => block.zIndex = maxZIndex);
+        focus.forEach(block => block.style.zIndex = maxZIndex);
         const after = _.cloneDeep(_this.schemaService.schema.blocks);
         return {
             undo: () => {
@@ -239,14 +239,14 @@ export class CommandsService {
     execute() {
         const before = _.cloneDeep(_this.schemaService.schema.blocks);
         const { focus, unfocused } = _this.schemaService.blocksFocusInfo();
-        let minZIndex = unfocused.reduce((prev, block) => Math.min(prev, block.zIndex), Infinity) - 1;
+        let minZIndex = unfocused.reduce((prev, block) => Math.min(prev, block.style.zIndex), Infinity) - 1;
         if (minZIndex < 0) { // 小于0,就让他等于0（小于0不太好）
           const dur = Math.abs(minZIndex);
-          unfocused.forEach(block => block.zIndex += dur);
+          unfocused.forEach(block => block.style.zIndex += dur);
           minZIndex = 0;
         }
         // 给选中元素增加权重
-        focus.forEach(block => block.zIndex = minZIndex);
+        focus.forEach(block => block.style.zIndex = minZIndex);
         const after = _.cloneDeep(_this.schemaService.schema.blocks);
         return {
             undo: () => {
