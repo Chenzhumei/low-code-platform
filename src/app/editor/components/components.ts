@@ -44,13 +44,23 @@ export const COPONENT_LIST = [
       icon: 'pi pi-images',
       component: ImageComponent,
       propsConfig: {
+        width: {
+          type: 'input',
+          label: '宽度'
+        },
+        height: {
+          type: 'input',
+          label: '长度'
+        },
         src: {
           type: 'input',
           label: '图片地址'
         }
       },
       props: {
-        src: 'assets/img/image.png'
+        src: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg2.niutuku.com%2Fdesk%2F1208%2F1300%2Fntk-1300-31979.jpg&refer=http%3A%2F%2Fimg2.niutuku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668844412&t=b24e267bd7cbf6f6c85ed973f04160ac',
+        width: 100,
+        height: 100
       }
     },
     {
