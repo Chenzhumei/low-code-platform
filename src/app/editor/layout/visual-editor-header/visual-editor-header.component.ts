@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommandsService } from '../../service/commands.service';
 import { SchemaService } from '../../service/schema.service';
 
@@ -7,7 +7,7 @@ import { SchemaService } from '../../service/schema.service';
   templateUrl: './visual-editor-header.component.html',
   styleUrls: ['./visual-editor-header.component.scss']
 })
-export class VisualEditorHeaderComponent implements OnInit {
+export class VisualEditorHeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     public commandsService: CommandsService,
@@ -15,11 +15,16 @@ export class VisualEditorHeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.commandsService.initCommands();
   }
 
   save() {
     sessionStorage.setItem('myschema', JSON.stringify(this.schemaService.schema));
     alert('save success.');
+  }
+
+  ngOnDestroy(): void {
+    this.commandsService.destroy();
   }
 
 }
