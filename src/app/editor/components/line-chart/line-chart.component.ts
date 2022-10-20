@@ -25,6 +25,9 @@ export class LineChartComponent implements OnInit {
       chart: {
         type: 'line'
       },
+      title:{
+        text: this.props.chartTitle
+      },
       legend: {
         layout: 'vertical',
         align: 'right',
@@ -38,7 +41,7 @@ export class LineChartComponent implements OnInit {
             ['Second', 71.5],
             ['Third', 106.4]
         ]
-    }]
+     }]
     })
   }
 

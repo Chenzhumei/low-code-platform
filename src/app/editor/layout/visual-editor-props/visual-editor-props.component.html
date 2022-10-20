@@ -23,6 +23,10 @@
                             <label for="{{propKey}}" class="label">{{currentBlock.propsConfig[propKey].label}}</label>
                             <p-colorPicker name="{{propKey}}" [(ngModel)]="editProps[propKey]"></p-colorPicker>
                         </div>
+                        <div class="field" *ngSwitchCase="'csv-upload'">
+                            <label for="{{propKey}}" class="label">{{currentBlock.propsConfig[propKey].label}}</label>
+                            <p-fileUpload name="{{propKey}}" mode="basic"></p-fileUpload>
+                        </div>
                     </ng-container>
                 </ng-container>
             </ng-container>

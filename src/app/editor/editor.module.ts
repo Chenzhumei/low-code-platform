@@ -29,6 +29,8 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {DropdownModule} from 'primeng/dropdown';
 import {MessageModule} from 'primeng/message';
 import {MessagesModule} from 'primeng/messages';
+import {FileUploadModule} from 'primeng/fileupload';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -48,6 +50,7 @@ import {MessagesModule} from 'primeng/messages';
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     MessageModule,
     MessagesModule,
     ChartModule,
@@ -56,6 +59,7 @@ import {MessagesModule} from 'primeng/messages';
     MultiSelectModule,
     InputNumberModule,
     DropdownModule,
+    FileUploadModule,
     ColorPickerModule,
     AccordionModule,
     EditorRoutingModule

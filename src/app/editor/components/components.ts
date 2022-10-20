@@ -59,18 +59,29 @@ export const COPONENT_LIST = [
         icon: 'pi pi-chart-line',
         component: LineChartComponent,
         propsConfig: {
-          data: {
+          chartTitle: {
             type: 'input',
-            label: '数据'
+            label: '表格标题'
+          },
+          data: {
+            type: 'select',
+            label: '系统数据',
+            options: [
+              {label: '选择数据源', value: ''},
+              {label: 'ETR', value: 'ETR'},
+              {label: 'Tier', value: 'Tier'},
+              {label: 'Taxionomy', value: 'Taxionomy'}
+           ]
           },
           csv: {
-            type: 'input',
+            type: 'csv-upload',
             label: 'csv上传'
           }
         },
         props: {
           data: '',
-          csv: ''
+          csv: '',
+          chartTitle: '表格标题'
         }
     }
 ]
