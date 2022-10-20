@@ -1,18 +1,17 @@
 <div class="visual-editor-content" >
-    <div class="visual-editor-canvas" [style.width.px]="schemaService.schema.container.width" 
+    <div class="visual-editor-canvas" 
+        [style.width.px]="schemaService.schema.container.width" 
         [style.height.px]="schemaService.schema.container.height"
-        (drop)="handleDrop($event)" (dragenter)="handleDragenter($event)" (dragleave)="handleDragleave($event)" 
-        (dragover)="handleDragover($event)" (mousedown)="handleClickCanvas($event)">
-        
-         <!-- <ng-container *ngFor="let item of blocks"
-            [ngComponentOutlet]="item.component" 
-            [ngComponentOutletInjector]="createInjector(item)">
-        </ng-container> -->
+        (dragenter)="handleDragenter($event)" (drop)="handleDrop($event)" 
+        (dragover)="handleDragover($event)" (dragleave)="handleDragleave($event)" 
+        (mousedown)="handleClickCanvas($event)">
+
         <ng-container *ngIf="schemaService.schema.blocks.length">
             <ng-container *ngFor="let item of schemaService.schema.blocks; let i = index">
                 <app-dynamic-render [block]="item" [blockIndex]="i"></app-dynamic-render>
             </ng-container>
         </ng-container>  
+        
         <div *ngIf="markLineService.markLine.y" class="visual-editor-mark-line-y" [style.top.px]="markLineService.markLine.y"></div>
         <div *ngIf="markLineService.markLine.x" class="visual-editor-mark-line-x" [style.left.px]="markLineService.markLine.x"></div>
     </div>

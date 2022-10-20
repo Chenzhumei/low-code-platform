@@ -57,7 +57,7 @@ export class VisualEditorContentComponent implements OnInit {
         ... this.currentMaterialService.currentMatirialComponent
       });
       this.currentMaterialService.currentMatirialComponent = null;
-       this.dragEventService.setDragEvent('endDrag');
+      this.dragEventService.setDragEvent('endDrag');
     }
 
   handleClickCanvas(e: any) {
