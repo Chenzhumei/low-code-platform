@@ -13,8 +13,12 @@ $leftRightWidth: 260px;
 .visual-editor-canvas {
     position: relative;
     width: 800px;
-    height: 1000px;
-    // background-color: yellowgreen;
+    height: 800px;
+    margin: 15px auto;
+    background-color: #fff;
+    &.edit-mode {
+        background-image: url('../../../../assets/img/bg-grid.png');
+    }
 }
 
 .visual-editor-block {

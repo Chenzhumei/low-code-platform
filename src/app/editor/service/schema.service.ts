@@ -7,8 +7,8 @@ import * as _ from 'lodash'
 export class SchemaService {
   public schema: Record<string, any> = {
     container: {
-      width: 800,
-      height: 1000
+      width: 600,
+      height: 800
     },
     blocks: []
   };

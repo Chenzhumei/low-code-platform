@@ -64,7 +64,7 @@ export class VisualEditorContentComponent implements OnInit {
     e.stopPropagation();
     e.preventDefault();
     this.schemaService.cleanBlocksFocus(-1);
-    // this.schemaService.setLateastSelectedBlock({lateastSelectedBlock: null, blockIndex:-1});
+    this.schemaService.setLateastSelectedBlock({lateastSelectedBlock: null, blockIndex:-1});
   }
 
 }
