@@ -8,7 +8,8 @@ import { SchemaService } from '../../service/schema.service';
   styleUrls: ['./visual-editor-header.component.scss']
 })
 export class VisualEditorHeaderComponent implements OnInit, OnDestroy {
-
+  display = false;
+  schemaStr: string = '';
   constructor(
     public commandsService: CommandsService,
     private schemaService: SchemaService,
@@ -21,6 +22,11 @@ export class VisualEditorHeaderComponent implements OnInit, OnDestroy {
   save() {
     sessionStorage.setItem('myschema', JSON.stringify(this.schemaService.schema));
     alert('save success.');
+  }
+
+  showSchemaDialog() {
+    this.display = true
+    this.schemaStr = JSON.stringify(this.schemaService.schema)
   }
 
   ngOnDestroy(): void {

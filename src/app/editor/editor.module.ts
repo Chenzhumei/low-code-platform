@@ -31,7 +31,8 @@ import {MessageModule} from 'primeng/message';
 import {MessagesModule} from 'primeng/messages';
 import {FileUploadModule} from 'primeng/fileupload';
 import {HttpClientModule} from '@angular/common/http';
-
+import {DialogModule} from 'primeng/dialog';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,8 @@ import {HttpClientModule} from '@angular/common/http';
     DropdownModule,
     FileUploadModule,
     ColorPickerModule,
+    InputTextareaModule,
+    DialogModule,
     AccordionModule,
     EditorRoutingModule
   ],
