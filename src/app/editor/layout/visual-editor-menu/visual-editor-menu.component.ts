@@ -22,7 +22,7 @@ export class VisualEditorMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onDragStart(e: any, component:any) {
+  onDragStart(e: MouseEvent, component:any) {
     this.currentMaterialService.set(component);
     this.dragEventService.setDragEvent('startDrag');
   }

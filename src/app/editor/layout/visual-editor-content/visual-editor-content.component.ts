@@ -5,7 +5,7 @@ import { EditorService } from '../../service/editor.service';
 import { SchemaService } from '../../service/schema.service';
 import { MarkLineService } from '../../service/mark-line.service';
 import { DragEventService } from '../../service/drag-event.service';
-export const token = new InjectionToken<string>('')
+
 @Component({
   selector: 'app-visual-editor-content',
   templateUrl: './visual-editor-content.component.html',
@@ -23,13 +23,6 @@ export class VisualEditorContentComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-  }
-
-  createInjector(item: any) {
-    return Injector.create({
-     providers: [{provide: token, useValue: item}],
-     parent: this.injector
-    })
   }
 
 

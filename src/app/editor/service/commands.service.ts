@@ -17,7 +17,7 @@ export class CommandsService {
     private schemaService: SchemaService,
     private dragEventService: DragEventService
   ) {
-    this.init()
+    // this.init()
   }
 
   // 注册函数
