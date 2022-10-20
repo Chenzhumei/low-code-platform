@@ -57,9 +57,19 @@ export class SchemaService {
     return { focus, unfocused };
   }
 
-  cleanBlocksFocus() {
-    this.schema.blocks.forEach((block: any) => block.focus = false);
-    // refresh && this.editorService.forceUpdateEditor(true);
+  cleanBlocksFocus(blockIndex: number, isFocus?: boolean) {
+    const {focus} = this.blocksFocusInfo();
+    // 如果点击画布且画布中没有focus的组件，直接return，避免更新
+    if (blockIndex == -1 && !focus.length) return;
+    this.schema.blocks = this.schema.blocks.map((block: any, index: number) => {
+      if (blockIndex == index) {
+        block.focus = isFocus;
+      } else {
+        block.focus = false;
+      } 
+      return block;
+    });
+    // this.schema.blocks = _.cloneDeep(blocks)
   } 
 
   setLateastSelectedBlock(selectedBlockInfo:{lateastSelectedBlock: any, blockIndex: number}) {

@@ -14,17 +14,25 @@ import { SchemaService } from '../service/schema.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicRenderComponent implements OnInit {
-  componentType = '';
   componentMap: any = {};
-  data: any;
-
-  @Input() set block(blockData: Record<string, any>) {
-    this.data = blockData;
-    this.componentType = this.data.type as string;
-    this.componentType && this.createDynamicComponent(this.componentType);
-    console.log('dynamic component data change', this.data)
-  };
+  _props: any;
+  @Input() block: any; // 当前动态组件全部信息
   @Input() blockIndex = -1;
+  @Input() componentType: string = '';
+  // style
+  @Input() focus: boolean = false;
+  @Input() left: number = 0;
+  @Input() top: number = 0;
+  @Input() zIndex: number = 1;
+ 
+
+  // 右侧配置值：变化时重新渲染动态组件
+  @Input() set props(propsData: Record<string, any>) {
+    console.log('dynamic component data change', this.componentType)
+    this._props = propsData;
+    this.componentType && this.createDynamicComponent(this.componentType);
+  };
+ 
 
   @ViewChild(RenderDynamicDirective, {static: true}) renderDynamic!:RenderDynamicDirective;
 
@@ -55,22 +63,21 @@ export class DynamicRenderComponent implements OnInit {
   }
 
   createDynamicComponent(type: string) {
-   console.log(type, 'created....')
    const component = this.cfr.resolveComponentFactory(this.componentMap[type]);
    this.renderDynamic.vcr.clear();
    const componentRef: ComponentRef<any> = this.renderDynamic.vcr.createComponent(component);
    // 给动态组件传递数据
-   componentRef.instance.props = this.data.props;
+   componentRef.instance.props = this._props;
    componentRef.changeDetectorRef.detectChanges();
  
    const { offsetWidth, offsetHeight } = componentRef.location.nativeElement.parentNode;
-   const { style } = this.data;
+   const { style } = this.block;
    style.width = offsetWidth;
    style.height = offsetHeight;
-   if (this.data.alignCenter) {
+   if (this.block.alignCenter) {
       style.left = style.left - offsetWidth / 2;
       style.top = style.top - offsetHeight / 2;
-      this.data.alignCenter = false;
+      this.block.alignCenter = false;
     }
   }
 
@@ -81,11 +88,10 @@ export class DynamicRenderComponent implements OnInit {
     if (e.shiftKey) {
       const { focus } = this.schemaService.blocksFocusInfo();
       // 当前只有一个被选中时，按住 shift 键不会切换 focus 状态
-      this.data.focus = focus.length <= 1 ? true : !this.data.focus;
+      this.focus = focus.length <= 1 ? true : !this.focus;
     } else {
-      if (!this.data.focus) {
-        this.schemaService.cleanBlocksFocus();
-        this.data.focus = true;
+      if (!this.focus) {
+        this.schemaService.cleanBlocksFocus(this.blockIndex, true);  
       }
     }
     this.schemaService.setLateastSelectedBlock({lateastSelectedBlock: this.schemaService.schema.blocks[this.blockIndex], blockIndex:this.blockIndex});
@@ -98,7 +104,7 @@ export class DynamicRenderComponent implements OnInit {
     const { focus, unfocused } = this.schemaService.blocksFocusInfo();
 
     // B 代表最近一个选中拖拽的元素，A 则是对应的参照物，对比两者的位置
-    const { width: BWidth, height: BHeight, left: BLeft, top: BTop } = this.data.style;
+    const { width: BWidth, height: BHeight, left: BLeft, top: BTop } = this.block.style;
 
     // 1、记录鼠标拖动前的位置信息，以及所有选中元素的位置信息
     this.dragState = {

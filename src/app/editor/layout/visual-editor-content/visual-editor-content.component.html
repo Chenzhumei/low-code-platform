@@ -8,7 +8,10 @@
 
         <ng-container *ngIf="schemaService.schema.blocks.length">
             <ng-container *ngFor="let item of schemaService.schema.blocks; let i = index">
-                <app-dynamic-render [block]="item" [blockIndex]="i"></app-dynamic-render>
+                <app-dynamic-render [block]="item" [componentType]="item.type" [focus]="item.focus" [blockIndex]="i"
+                 [left]="item.style.left" [top]="item.style.top" [zIndex]="item.style.zIndex"
+                 [props]="item.props" >
+                </app-dynamic-render>
             </ng-container>
         </ng-container>  
         
