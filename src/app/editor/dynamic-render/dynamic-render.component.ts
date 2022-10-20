@@ -22,7 +22,7 @@ export class DynamicRenderComponent implements OnInit {
     this.data = blockData;
     this.componentType = this.data.type as string;
     this.componentType && this.createDynamicComponent(this.componentType);
-    console.log('data change', this.data)
+    console.log('dynamic component data change', this.data)
   };
   @Input() blockIndex = -1;
 
@@ -32,7 +32,7 @@ export class DynamicRenderComponent implements OnInit {
     startX: 0, // 移动前 x 轴位置
     startY: 0, // 移动前 y 轴位置
     startPos: [], // 移动前 所有 focus block 的位置存储,
-    dragging: false //
+    dragging: false 
   }
   
   constructor(
@@ -55,7 +55,7 @@ export class DynamicRenderComponent implements OnInit {
   }
 
   createDynamicComponent(type: string) {
-   console.log('createDynamicComponent:', type)
+   console.log(type, 'created....')
    const component = this.cfr.resolveComponentFactory(this.componentMap[type]);
    this.renderDynamic.vcr.clear();
    const componentRef: ComponentRef<any> = this.renderDynamic.vcr.createComponent(component);
@@ -77,6 +77,7 @@ export class DynamicRenderComponent implements OnInit {
   handleMouseDown(e: MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
+    console.log('handleMouseDown')
     if (e.shiftKey) {
       const { focus } = this.schemaService.blocksFocusInfo();
       // 当前只有一个被选中时，按住 shift 键不会切换 focus 状态
@@ -93,13 +94,11 @@ export class DynamicRenderComponent implements OnInit {
 
 
   handleBlockMouseMove (e: MouseEvent) {
-    console.log('blockMouseMove')
+    console.log('handleBlockMouseMove')
     const { focus, unfocused } = this.schemaService.blocksFocusInfo();
 
-    const lastSelectBlock = this.schemaService.schema.blocks[this.blockIndex];
-
-    // 我们声明：B 代表最近一个选中拖拽的元素，A 则是对应的参照物，对比两者的位置
-    const { width: BWidth, height: BHeight, left: BLeft, top: BTop } = lastSelectBlock.style;
+    // B 代表最近一个选中拖拽的元素，A 则是对应的参照物，对比两者的位置
+    const { width: BWidth, height: BHeight, left: BLeft, top: BTop } = this.data.style;
 
     // 1、记录鼠标拖动前的位置信息，以及所有选中元素的位置信息
     this.dragState = {
@@ -149,6 +148,7 @@ export class DynamicRenderComponent implements OnInit {
     };
 
     const blockMove = (e: MouseEvent) => {
+      console.log('blockMove')
       if (!this.dragState.dragging) {
         this.dragState.dragging = true;
         this.dragEventService.setDragEvent('startDrag'); // 记录开始拖拽移动
