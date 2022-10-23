@@ -1,20 +1,20 @@
 <header class="visual-editor-header">
     <div class="visual-editor-header-wrap">Visual-Editor</div>
     <div class="visual-editor-header-wrap">
-        <button pButton type="button" class="p-button-outlined p-button-sm" icon="pi pi-history" iconPos="right" (click)="commandsService.commands.undo()">撤销</button>
-        <button pButton type="button" class="p-button-outlined p-button-sm" icon="pi pi-refresh" iconPos="right" (click)="commandsService.commands.redo()">重做</button>
-        <button pButton type="button" class="p-button-sm" icon="pi pi-file-edit" iconPos="right">编辑</button>
+        <button pButton type="button" class="p-button-outlined p-button-sm" icon="pi pi-history" iconPos="right" (click)="commandsService.commands.undo()">Undo</button>
+        <button pButton type="button" class="p-button-outlined p-button-sm" icon="pi pi-refresh" iconPos="right" (click)="commandsService.commands.redo()">Redo</button>
+        <button pButton type="button" class="p-button-sm" icon="pi pi-file-edit" iconPos="right">Edit</button>
     </div>
     <div class="visual-editor-header-wrap">
-        <button pButton type="button" class="p-button-outlined p-button-sm" icon="pi pi-file-import" iconPos="right">导入</button>
-        <button pButton type="button" class="p-button-outlined p-button-sm" icon="pi pi-file-export" iconPos="right" (click)="showSchemaDialog()">导出</button>
-        <button pButton type="button" class="p-button-sm" icon="pi pi-save" iconPos="right" (click)="save()">保存</button>
+        <button pButton type="button" class="p-button-outlined p-button-sm" icon="pi pi-file-import" iconPos="right">Import</button>
+        <button pButton type="button" class="p-button-outlined p-button-sm" icon="pi pi-file-export" iconPos="right" (click)="showSchemaDialog()">Export</button>
+        <button pButton type="button" class="p-button-sm" icon="pi pi-save" iconPos="right" (click)="save()">Save</button>
     </div>
     <div class="visual-editor-header-wrap">
-        <button pButton type="button" class="p-button-outlined p-button-sm"  icon="pi pi-arrow-up" iconPos="right" (click)="commandsService.commands.placeTop()">置顶</button>
-        <button pButton type="button" class="p-button-outlined p-button-sm" icon="pi pi-arrow-down" iconPos="right" (click)="commandsService.commands.placeBottom()">置底</button>
-        <button pButton type="button" class="p-button-outlined p-button-sm" icon="pi pi-trash" iconPos="right" (click)="commandsService.commands.delete()">删除</button>
-        <button pButton type="button" class="p-button-outlined p-button-sm" icon="pi pi-times" iconPos="right" (click)="commandsService.commands.clear()">清空</button>
+        <button pButton type="button" class="p-button-outlined p-button-sm"  icon="pi pi-arrow-up" iconPos="right" (click)="commandsService.commands.placeTop()">Place Top</button>
+        <button pButton type="button" class="p-button-outlined p-button-sm" icon="pi pi-arrow-down" iconPos="right" (click)="commandsService.commands.placeBottom()">Place Bottom</button>
+        <button pButton type="button" class="p-button-outlined p-button-sm" icon="pi pi-trash" iconPos="right" (click)="commandsService.commands.delete()">Delete</button>
+        <button pButton type="button" class="p-button-outlined p-button-sm" icon="pi pi-times" iconPos="right" (click)="commandsService.commands.clear()">Clear</button>
     </div>
 </header> 
 

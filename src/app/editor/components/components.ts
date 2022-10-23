@@ -13,11 +13,11 @@ export const COPONENT_LIST = [
       propsConfig: {
         text: {
           type: 'input',
-          label: '显示文本'
+          label: 'Text'
         },
         size: {
           type: 'select',
-          label: '字体大小',
+          label: 'Font Size',
           options: [
             {label: '12px', value: '12px'},
             {label: '14px', value: '14px'},
@@ -29,11 +29,11 @@ export const COPONENT_LIST = [
         },
         color: {
           type: 'color',
-          label: '字体颜色'
+          label: 'Font Color'
         }
       },
       props: {
-        text: '输入文本',
+        text: 'text',
         size: '12px',
         color: '#000'
       }
@@ -46,15 +46,15 @@ export const COPONENT_LIST = [
       propsConfig: {
         width: {
           type: 'input',
-          label: '宽度'
+          label: 'Width'
         },
         height: {
           type: 'input',
-          label: '长度'
+          label: 'Height'
         },
         src: {
           type: 'input',
-          label: '图片地址'
+          label: 'Image Source'
         }
       },
       props: {
@@ -71,13 +71,13 @@ export const COPONENT_LIST = [
         propsConfig: {
           chartTitle: {
             type: 'input',
-            label: '表格标题'
+            label: 'Title'
           },
           data: {
             type: 'select',
-            label: '系统数据',
+            label: 'System Data',
             options: [
-              {label: '选择数据源', value: ''},
+              {label: 'select', value: ''},
               {label: 'ETR', value: 'ETR'},
               {label: 'Tier', value: 'Tier'},
               {label: 'Taxionomy', value: 'Taxionomy'}
@@ -85,13 +85,13 @@ export const COPONENT_LIST = [
           },
           csv: {
             type: 'csv-upload',
-            label: 'csv上传'
+            label: 'CSV Upload'
           }
         },
         props: {
           data: '',
           csv: '',
-          chartTitle: '表格标题'
+          chartTitle: 'Title'
         }
     }
 ]

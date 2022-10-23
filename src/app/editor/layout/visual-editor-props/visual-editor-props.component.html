@@ -1,5 +1,5 @@
 <div class="visual-editor-props">
-    <h3>组件属性</h3>
+    <h3>Component Props</h3>
     <div class="content">
         <form class="props">
             <ng-container *ngIf="currentBlock">
@@ -33,14 +33,14 @@
 
             <ng-container *ngIf="!currentBlock">
                 <div class="field">
-                    <label for="containerWidth" class="label">容器宽度</label>
+                    <label for="containerWidth" class="label">Container Width</label>
                     <p-inputNumber [(ngModel)]="currentContainer.width" name="containerWidth" [showButtons]="true" [min]="100" buttonLayout="horizontal" inputId="containerWidth" suffix="px"
                      [step]="100" decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" 
                     incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal">
                     </p-inputNumber>
                 </div>
                 <div class="field">
-                    <label for="containerHeight" class="label">容器高度</label>
+                    <label for="containerHeight" class="label">Container Height</label>
                     <p-inputNumber [(ngModel)]="currentContainer.height" name="containerHeight" [showButtons]="true" [min]="100" buttonLayout="horizontal" inputId="containerHeight" suffix="px"
                      [step]="100" decrementButtonClass="p-button-primary" incrementButtonClass="p-button-primary" 
                     incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal">
@@ -49,9 +49,9 @@
             </ng-container>     
         </form>
         <div class="footer">
-            <button pButton type="button" label="重置" class="p-button-outlined"
+            <button pButton type="button" label="Reset" class="p-button-outlined"
              style="margin-right: 15px;" (click)="reset()"></button>
-            <button pButton type="button" label="应用" (click)="apply()"></button>
+            <button pButton type="button" label="Apply" (click)="apply()"></button>
         </div>
     </div>
 </div>
