@@ -29,8 +29,10 @@ export class DynamicRenderComponent implements OnInit {
   // 右侧配置值：变化时重新渲染动态组件
   @Input() set props(propsData: Record<string, any>) {
     console.log('dynamic component data change', this.componentType)
-    this._props = propsData;
-    this.componentType && this.createDynamicComponent(this.componentType);
+    setTimeout(() => {
+      this._props = propsData;
+      this.componentType && this.createDynamicComponent(this.componentType);
+    }, 0);
   };
  
 
